@@ -1,4 +1,8 @@
 import React, { useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const AuthContext = React.createContext({
     token: '',
@@ -10,7 +14,7 @@ const AuthContext = React.createContext({
 
 
 const retrieveStoredToken = () => {
-    const storedToken = localStorage.getItem('token');
+    const storedToken = cookies.get('token');
 
     return {
         token: storedToken
@@ -18,6 +22,7 @@ const retrieveStoredToken = () => {
 };
 
 export const AuthContextProvider = (props) => {
+    const history = useHistory();
     const tokenData = retrieveStoredToken().token;
     let initialToken;
     if (tokenData) {
@@ -31,16 +36,15 @@ export const AuthContextProvider = (props) => {
 
     const logoutHandler = useCallback(() => {
         setToken(null);
-        localStorage.removeItem('token');
+        cookies.remove('token');
+        history.replace('/');
     }, []);
 
     const loginHandler = (token, roles) => {
         setToken(token);
         setRoles(roles);
-        localStorage.setItem('token', token);
+        cookies.set('token', token);
     };
-
-
 
     const contextValue = {
         token: token,
