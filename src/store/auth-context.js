@@ -37,7 +37,7 @@ export const AuthContextProvider = (props) => {
     const logoutHandler = useCallback(() => {
         setToken(null);
         cookies.remove('token');
-        history.replace('/');
+        window.location.href = "/";
     }, []);
 
     const loginHandler = (token, roles) => {
