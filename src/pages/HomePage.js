@@ -9,8 +9,9 @@ const HomePage = () => {
         setAdmin(isAdmin())
         setUser(isRegisteredUser())
     }, [])
-
+    //
     return (<div>{ admin ? (<div>IT IS ADMIN</div>) : (<div>IT IS REGULAR USER</div>)}</div>);
+    // return (<div></div>);
 };
 
 export default HomePage;

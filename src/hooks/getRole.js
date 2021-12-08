@@ -1,6 +1,7 @@
 const getRoles = () => {
-    fetch("http://localhost:8000/authority", {
+    fetch("/authority", {
         method: 'GET',
+        credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -18,16 +19,16 @@ const getRoles = () => {
             }
         })
         .then((data) => {
-            return data.roles.map(role => role.name);
+            return data.map(role => role.name);
         })
         .catch((err) => {
             alert(err.message);
         });
 };
 
-export const isAdmin = () => {
-    let roles = getRoles();
-    console.log(roles);
+export const isAdmin = async () => {
+    let roles = await getRoles();
+    // console.log(roles.includes('ADMIN'));
     // return roles.includes("ADMIN");
     return true;
 };
