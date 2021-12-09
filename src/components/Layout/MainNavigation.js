@@ -41,7 +41,7 @@ const MainNavigation = () => {
                                     <i className="fa fa-caret-down"/>
                                 </button>
                                 <div className={classes.dropdownContent}>
-                                    <a href="/records">Add records</a>
+                                    <a href="/records/add">Add records</a>
                                     <a href="/disciplines">Add disciplines</a>
                                     <a href="/group">Add groups</a>
                                     <a href="/lectors">Add lectors</a>
