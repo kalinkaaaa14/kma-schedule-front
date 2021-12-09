@@ -62,13 +62,13 @@ const MainNavigation = () => {
                                 <a href="/group/add">+Група</a>
                             </li>
                             <li>
-                                <a href="/lectors">+Викладач</a>
+                                <a href="/lectors/add">+Викладач</a>
                             </li>
                             <li>
-                                <a href="/classtime">+Час</a>
+                                <a href="/classtime/add">+Час</a>
                             </li>
                             <li>
-                                <a href="/classroom">+Кабінет</a>
+                                <a href="/classroom/add">+Кабінет</a>
                             </li>
                         </>
                     )
