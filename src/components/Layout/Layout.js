@@ -1,7 +1,6 @@
-import {Fragment, useContext} from 'react';
+import {Fragment} from 'react';
 
 import MainNavigation from './MainNavigation';
-import AuthContext from "../../store/auth-context";
 
 const Layout = (props) => {
 
