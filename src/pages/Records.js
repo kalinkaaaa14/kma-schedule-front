@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import RecordsTable from "../components/Records/RecordsTable";
 
 const Records = () => {
     const [admin, setAdmin] = useState(false);
@@ -15,9 +16,11 @@ const Records = () => {
         getRole();
     }, [])
 
-    return (<div>{ user ? (<div>IT IS user</div>) :
-        ( admin ? (<div>IT IS admin</div>) :
-            (<div>IT IS noone</div>))}</div>);
+    return (
+        <>
+        <RecordsTable/>
+        </>
+    )
 };
 
 export default Records;
