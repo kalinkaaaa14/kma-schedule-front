@@ -30,18 +30,7 @@ const AddGroupForm = () => {
     const submitHandler = async (event) => {
         event.preventDefault();
 
-        //console.log(lectors);
-        // console.log(specialization)
-        // console.log(degree)
-        // console.log(course)
-        // console.log(isLecture)
-        // console.log(groupNumber)
-        // console.log(lecturerId)
-        // console.log("=================================")
-        // to - do : Add validation
-
         setIsLoading(true);
-
 
        const response = await fetch("/group", {
             method: 'POST',
