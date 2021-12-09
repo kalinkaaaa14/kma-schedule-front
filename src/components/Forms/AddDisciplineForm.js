@@ -55,6 +55,7 @@ const AddDisciplineForm = () => {
         });
 
         response.ok ?  alert("Дисципліна успішно додано.") :  alert("Дисципліну не було додано. Status: "+ response.status);
+        getDisciplines();
         setName('');
         setLecturerId(1);
         setIsLoading(false);
