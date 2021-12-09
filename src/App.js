@@ -10,6 +10,9 @@ import Records from "./pages/Records";
 import AddRecordPage from "./pages/AddRecordPage";
 import AddGroupPage from "./pages/AddGroupPage";
 import AddDisciplinePage from "./pages/AddDisciplinePage";
+import AddLecturerPage from "./pages/AddLecturerPage";
+import AddClassroomPage from "./pages/AddClassroomPage";
+import AddClassTimeForm from "./components/Forms/AddClassTimeForm";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -28,6 +31,15 @@ function App() {
             </Route>
             <Route path='/group/add' exact>
                 <AddGroupPage />
+            </Route>
+            <Route path='/lectors/add' exact>
+                <AddLecturerPage />
+            </Route>
+            <Route path='/classroom/add' exact>
+                <AddClassroomPage />
+            </Route>
+            <Route path='/classtime/add' exact>
+                <AddClassroomPage />
             </Route>
           {!authCtx.isLoggedIn && (
               <Route path='/sign-in'>
