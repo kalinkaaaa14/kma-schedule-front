@@ -25,12 +25,10 @@ const AddGroupForm = () => {
         setGroups(dataJson);
     }
 
-
     useEffect(  () => {
         getLectors();
         getGroups();
     }, [])
-
 
     const submitHandler = async (event) => {
         event.preventDefault();
@@ -55,6 +53,7 @@ const AddGroupForm = () => {
 
        console.log(response);
        response.ok ?  alert("Групу успішно додано.") :  alert("Групу не було додано. Status: "+ response.status);
+       getGroups();
        setSpecialization('ipz');
        setDegree('bachelor');
        setCourse(1);
