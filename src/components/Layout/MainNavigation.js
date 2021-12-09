@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 
 import AuthContext from '../../store/auth-context';
@@ -13,6 +13,22 @@ const MainNavigation = () => {
         authCtx.logout();
     };
 
+    const [admin, setAdmin] = useState(false);
+    const [user, setUser] = useState(false);
+    const getRole = async () => {
+        const data = await fetch("/authority");
+        const dataJson = await data.json();
+        if(!dataJson.hasOwnProperty('error')) {
+            const roles = dataJson.map(role => role.name);
+            setUser(roles.includes("USER"));
+            setAdmin(roles.includes("ADMIN"));
+        }
+    }
+
+    useEffect(  () => {
+        getRole();
+    }, [])
+
     return (
         <header className={classes.header}>
             <Link to='/'>
@@ -20,23 +36,23 @@ const MainNavigation = () => {
             </Link>
             <nav>
                 <ul>
-                    {!isLoggedIn && (
+                    {!admin && !user && (
                         <li>
                             <Link to='/sign-in'>Sign in</Link>
                         </li>
                     )}
-                    {!isLoggedIn && (
+                    {!admin && !user && (
                         <li>
                             <Link to='/sign-up'>Sign up</Link>
                         </li>
                     )}
-                    {isLoggedIn &&(
+                    {(admin || user) &&(
                         <li>
                             <Link to='/records'>Records</Link>
                         </li>
                     )}
 
-                    {isLoggedIn && roles.includes("ADMIN") &&
+                    {admin &&
                         <li>                            <div className={classes.dropdown}>
                                 <button className={classes.dropbtn}>Dropdown
                                     <i className="fa fa-caret-down"/>
@@ -52,7 +68,7 @@ const MainNavigation = () => {
                             </div>
                         </li>
                     }
-                    {isLoggedIn &&  (
+                    {(admin || user) &&  (
                         <li>
                             <button onClick={logoutHandler}>Logout</button>
                         </li>

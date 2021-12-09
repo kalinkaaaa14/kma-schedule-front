@@ -1,11 +1,9 @@
 import { useState, useRef, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import AuthContext from '../../store/auth-context';
 import classes from './AuthForm.module.css';
 
 const SignInForm = () => {
-    const history = useHistory();
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
     const authCtx = useContext(AuthContext);
@@ -50,7 +48,7 @@ const SignInForm = () => {
             .then((data) => {
                 let userRoles = data.roles.map(role => role.name);
                 authCtx.login(data.auth, userRoles);
-                history.replace('/');
+                window.location.href = '/'
             })
             .catch((err) => {
                 alert(err.message);
