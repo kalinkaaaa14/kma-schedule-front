@@ -48,18 +48,18 @@ const SignUpForm = () => {
 
     return (
         <section className={classes.auth}>
-            <h1>Sign up</h1>
+            <h1>Реєстрація</h1>
             <form onSubmit={submitHandler}>
                 <div className={classes.control}>
-                    <label htmlFor='username'>Your Username</label>
+                    <label htmlFor='username'>Ваш юзернейм</label>
                     <input type='text' id='username' required ref={usernameInputRef} />
                 </div>
                 <div className={classes.control}>
-                    <label htmlFor='email'>Your Email</label>
+                    <label htmlFor='email'>Ваш мейл</label>
                     <input type='email' id='email' required ref={emailInputRef} />
                 </div>
                 <div className={classes.control}>
-                    <label htmlFor='password'>Your Password</label>
+                    <label htmlFor='password'>Ваш пароль</label>
                     <input
                         type='password'
                         id='password'
@@ -69,9 +69,9 @@ const SignUpForm = () => {
                 </div>
                 <div className={classes.actions}>
                     {!isLoading && (
-                        <button>Sign up</button>
+                        <button>Зареєструватись</button>
                     )}
-                    {isLoading && <p>Sending request...</p>}
+                    {isLoading && <p>Надсилаємо запит...</p>}
                 </div>
             </form>
         </section>
