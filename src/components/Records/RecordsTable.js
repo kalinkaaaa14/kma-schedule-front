@@ -10,7 +10,7 @@ const RecordsTable = () => {
     const [selected, setSelected] = useState([]);
     const [sort, setSort] = useState([]);
 
-    const [value, setValue] = React.useState(2);
+    const [value, setValue] = React.useState(1);
     const [lectors, setLectors] = useState([]);
     const [disciplines, setDisciplines] = useState([]);
     const [filterByLector, setFilterByLector] = useState('');
@@ -32,20 +32,24 @@ const RecordsTable = () => {
 
 
     const fetchData = async () => {
+        console.log("here")
         let dataJson;
         if(filterByLector !== ''){
             const data = await fetch("/records/lecturer/"+filterByLector);
             dataJson = await data.json();
+            // setFilterByLector('');
         }else if(filterByGroup !== ''){
             console.log("by gro");
             console.log(filterByGroup);
             const data = await fetch("/records/group/"+filterByGroup);
             dataJson = await data.json();
+            // setFilterByGroup('');
         }else if(filterByDiscipline !== ''){
             console.log("by discipline");
             console.log(filterByDiscipline)
             const data = await fetch("/records/discipline/"+filterByDiscipline);
             dataJson = await data.json();
+            // setFilterByDiscipline('');
         }else{
             const data = await fetch("/records/all/full");
             dataJson = await data.json();
@@ -59,7 +63,7 @@ const RecordsTable = () => {
 
     useEffect(  () => {
         fetchData();
-    }, [filterByLector])
+    }, [filterByLector,filterByDiscipline])
 
 
     return (
