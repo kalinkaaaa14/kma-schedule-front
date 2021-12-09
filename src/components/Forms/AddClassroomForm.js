@@ -39,9 +39,10 @@ const AddClassroomForm = () => {
 
         console.log(response);
         response.ok ? alert("Аудиторію додано успішно.") : alert("Аудиторію не було додано. Статус: " + response.status);
-
+        getClassrooms();
         setName('');
         setCapacity(0);
+        setIsLoading(false);
     };
 
     return (
