@@ -7,6 +7,7 @@ import AuthContext from './store/auth-context';
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import Records from "./pages/Records";
+import AddRecordPage from "./pages/AddRecordPage";
 import AddGroupPage from "./pages/AddGroupPage";
 import AddDisciplinePage from "./pages/AddDisciplinePage";
 
@@ -38,6 +39,9 @@ function App() {
                    <SignUpPage/>
                 </Route>
             )}
+                <Route path='/records/add'>
+                    <AddRecordPage/>
+                </Route>
           <Route path='*'>
             <Redirect to='/' />
           </Route>
