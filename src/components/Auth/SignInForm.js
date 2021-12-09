@@ -57,14 +57,14 @@ const SignInForm = () => {
 
     return (
         <section className={classes.auth}>
-            <h1>Login</h1>
+            <h1>Вхід</h1>
             <form onSubmit={submitHandler}>
                 <div className={classes.control}>
-                    <label htmlFor='email'>Your Email</label>
+                    <label htmlFor='email'>Ваш мейл</label>
                     <input type='email' id='email' required ref={emailInputRef} />
                 </div>
                 <div className={classes.control}>
-                    <label htmlFor='password'>Your Password</label>
+                    <label htmlFor='password'>Ваш пароль</label>
                     <input
                         type='password'
                         id='password'
@@ -74,9 +74,9 @@ const SignInForm = () => {
                 </div>
                 <div className={classes.actions}>
                     {!isLoading && (
-                        <button>Login</button>
+                        <button>Ввійти</button>
                     )}
-                    {isLoading && <p>Sending request...</p>}
+                    {isLoading && <p>Надсилаємо запит...</p>}
 
                 </div>
             </form>

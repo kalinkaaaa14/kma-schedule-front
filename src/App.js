@@ -13,6 +13,7 @@ import AddDisciplinePage from "./pages/AddDisciplinePage";
 import AddLecturerPage from "./pages/AddLecturerPage";
 import AddClassroomPage from "./pages/AddClassroomPage";
 import AddClassTimeForm from "./components/Forms/AddClassTimeForm";
+import AddClassTimePage from "./pages/AddClassTimePage";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -39,7 +40,7 @@ function App() {
                 <AddClassroomPage />
             </Route>
             <Route path='/classtime/add' exact>
-                <AddClassroomPage />
+                <AddClassTimePage />
             </Route>
           {!authCtx.isLoggedIn && (
               <Route path='/sign-in'>
