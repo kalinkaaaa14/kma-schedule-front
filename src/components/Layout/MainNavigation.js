@@ -6,9 +6,6 @@ import classes from './MainNavigation.module.css'
 const MainNavigation = () => {
     const authCtx = useContext(AuthContext);
 
-    const isLoggedIn = authCtx.isLoggedIn;
-    const roles = authCtx.roles;
-
     const logoutHandler = () => {
         authCtx.logout();
     };
@@ -38,39 +35,47 @@ const MainNavigation = () => {
                 <ul>
                     {!admin && !user && (
                         <li>
-                            <Link to='/sign-in'>Sign in</Link>
+                            <Link to='/sign-in'>Ввійти</Link>
                         </li>
                     )}
                     {!admin && !user && (
                         <li>
-                            <Link to='/sign-up'>Sign up</Link>
+                            <Link to='/sign-up'>Зареєструватися</Link>
                         </li>
                     )}
                     {(admin || user) &&(
                         <li>
-                            <Link to='/records'>Records</Link>
+                            <a href='/records'>Записи</a>
                         </li>
                     )}
 
                     {admin &&
-                        <li>                            <div className={classes.dropdown}>
-                                <button className={classes.dropbtn}>Dropdown
-                                    <i className="fa fa-caret-down"/>
-                                </button>
-                                <div className={classes.dropdownContent}>
-                                    <a href="/records/add">Add records</a>
-                                    <a href="/disciplines">Add disciplines</a>
-                                    <a href="/group/add">Add groups</a>
-                                    <a href="/lectors">Add lectors</a>
-                                    <a href="/classtime">Add classtime</a>
-                                    <a href="/classroom">Add classroom</a>
-                                </div>
-                            </div>
-                        </li>
+                    (
+                        <>
+                            <li>
+                                <a href="/records/add">+Запис</a>
+                            </li>
+                            <li>
+                                <a href="/disciplines">+Дисципліна</a>
+                            </li>
+                            <li>
+                                <a href="/group/add">+Група</a>
+                            </li>
+                            <li>
+                                <a href="/lectors">+Викладач</a>
+                            </li>
+                            <li>
+                                <a href="/classtime">+Час</a>
+                            </li>
+                            <li>
+                                <a href="/classroom">+Кабінет</a>
+                            </li>
+                        </>
+                    )
                     }
                     {(admin || user) &&  (
                         <li>
-                            <button onClick={logoutHandler}>Logout</button>
+                            <button onClick={logoutHandler}>Вихід</button>
                         </li>
                     )}
                 </ul>
