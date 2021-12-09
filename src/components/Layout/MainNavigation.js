@@ -35,6 +35,7 @@ const MainNavigation = () => {
                             <Link to='/records'>Records</Link>
                         </li>
                     )}
+
                     {isLoggedIn && roles.includes("ADMIN") &&
                         <li>                            <div className={classes.dropdown}>
                                 <button className={classes.dropbtn}>Dropdown
@@ -43,7 +44,7 @@ const MainNavigation = () => {
                                 <div className={classes.dropdownContent}>
                                     <a href="/records">Add records</a>
                                     <a href="/disciplines">Add disciplines</a>
-                                    <a href="/group">Add groups</a>
+                                    <a href="/group/add">Add groups</a>
                                     <a href="/lectors">Add lectors</a>
                                     <a href="/classtime">Add classtime</a>
                                     <a href="/classroom">Add classroom</a>
