@@ -34,7 +34,7 @@ const AddDisciplineForm = () => {
         setIsLoading(true);
 
 
-        const response = await fetch("http://localhost:8000/disciplines", {
+        const response = await fetch("/disciplines", {
             method: 'POST',
             credentials: 'same-origin',
             body: JSON.stringify({
@@ -47,10 +47,10 @@ const AddDisciplineForm = () => {
         });
 
         console.log(response);
-        response.ok ?  alert("Group is added successfully.") :  alert("Adding group FAILED. Status: "+ response.status);
-
+        response.ok ?  alert("Дисципліна успішно додано.") :  alert("Дисципліну не було додано. Status: "+ response.status);
         setName('');
         setLecturerId(1);
+        setIsLoading(false);
     };
 
     return (
