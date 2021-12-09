@@ -1,7 +1,6 @@
-import {useState, useRef, useContext, useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
-import AuthContext from '../../store/auth-context';
+import {useState, useEffect} from 'react';
 import classes from './AddGroup.module.css';
+import classesAuth from '../Auth/AuthForm.module.css';
 
 const AddGroupForm = () => {
     const [specialization, setSpecialization] = useState("ipz");
@@ -11,39 +10,34 @@ const AddGroupForm = () => {
     const [groupNumber,setGroupNumber] = useState('');
     const [lecturerId,setLecturerId] = useState(1);
     const [lectors,setLectors] = useState([]);
+    const [groups, setGroups] = useState([]);
 
-    const authCtx = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
-
 
     const getLectors = async () => {
         const data = await fetch("/lectors/all");
         const dataJson = await data.json();
         setLectors(dataJson);
     }
+    const getGroups = async () => {
+        const data = await fetch("/group/all");
+        const dataJson = await data.json();
+        setGroups(dataJson);
+    }
+
 
     useEffect(  () => {
         getLectors();
+        getGroups();
     }, [])
 
 
     const submitHandler = async (event) => {
         event.preventDefault();
 
-        //console.log(lectors);
-        // console.log(specialization)
-        // console.log(degree)
-        // console.log(course)
-        // console.log(isLecture)
-        // console.log(groupNumber)
-        // console.log(lecturerId)
-        // console.log("=================================")
-        // to - do : Add validation
-
         setIsLoading(true);
 
-
-       const response = await fetch("http://localhost:8000/group", {
+       const response = await fetch("/group", {
             method: 'POST',
             credentials: 'same-origin',
             body: JSON.stringify({
@@ -60,18 +54,19 @@ const AddGroupForm = () => {
         });
 
        console.log(response);
-       response.ok ?  alert("Group is added successfully.") :  alert("Adding group FAILED. Status: "+ response.status);
-
+       response.ok ?  alert("Групу успішно додано.") :  alert("Групу не було додано. Status: "+ response.status);
        setSpecialization('ipz');
        setDegree('bachelor');
        setCourse(1);
        setIsLecture(false);
        setGroupNumber('');
        setLecturerId(1);
+       setIsLoading(false);
     };
 
     return (
-        <section className={classes.auth}>
+        <div className={classesAuth.wrapper}>
+            <section className={classes.auth}>
             <h1>Додай нову групу тут</h1>
             <form onSubmit={submitHandler}>
                 <div className={classes.control}>
@@ -130,6 +125,29 @@ const AddGroupForm = () => {
                 </div>
             </form>
         </section>
+            <section className={classesAuth.tableWrapper}>
+                <table className={classesAuth.disciplineTable}>
+                    <tr>
+                        <th>#</th>
+                        <th>Ступінь</th>
+                        <th>Спеціальність</th>
+                        <th>Курс</th>
+                        <th>Лектор</th>
+                        <th>Лекція?</th>
+                    </tr>
+                    {(groups || []).map(i => (
+                        <tr key={i.id}>
+                            <td>{i.groupNumber}</td>
+                            <td>{i.degree}</td>
+                            <td>{i.specialization}</td>
+                            <td>{i.course}</td>
+                            <td>{lectors.filter(l => l.lecturerId === i.lecturerId).map(l => (l.surname + ' ' + l.name + ' '+ l.middlename))}</td>
+                            <td>{i.isLecture ? 'Так' : 'Ні'}</td>
+                        </tr>
+                    ))}
+                </table>
+            </section>
+        </div>
     );
 };
 
