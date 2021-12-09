@@ -8,6 +8,7 @@ import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import Records from "./pages/Records";
 import AddGroupPage from "./pages/AddGroupPage";
+import AddDisciplinePage from "./pages/AddDisciplinePage";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -20,6 +21,9 @@ function App() {
           </Route>
             <Route path='/records' exact>
                 <Records />
+            </Route>
+            <Route path='/disciplines' exact>
+                <AddDisciplinePage />
             </Route>
             <Route path='/group/add' exact>
                 <AddGroupPage />

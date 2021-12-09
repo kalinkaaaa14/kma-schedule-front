@@ -72,7 +72,7 @@ const AddGroupForm = () => {
 
     return (
         <section className={classes.auth}>
-            <h1>Login</h1>
+            <h1>Додай нову групу тут</h1>
             <form onSubmit={submitHandler}>
                 <div className={classes.control}>
                     <label htmlFor='specialization'>Спеціальність</label>
@@ -111,7 +111,7 @@ const AddGroupForm = () => {
                 </div>
 
                 <div className={classes.control}>
-                    <label htmlFor='lector'>Ступінь</label>
+                    <label htmlFor='lector'>Лектор</label>
                     <select name="lector" id="lector" onChange={e => setLecturerId(e.target.value)}>
                         {(lectors || []).map(lector => (
                             <option value={lector.lecturerId} key={lector.lecturerId}>
