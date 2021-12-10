@@ -143,6 +143,7 @@ const AddGroupForm = () => {
                         <th>Лектор</th>
                         <th>Лекція?</th>
                         <th>Видалити</th>
+                        <th>Оновити</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -158,6 +159,11 @@ const AddGroupForm = () => {
                                     <div className={classes.actions}>
                                         <button onClick={deleteData(i.id)}>Видалити</button>
                                     </div>
+                            </td>
+                            <td>
+                                <div className={classes.actions}>
+                                    <button onClick={deleteData(i.id)}>Оновити</button>
+                                </div>
                             </td>
                         </tr>
                     ))}
