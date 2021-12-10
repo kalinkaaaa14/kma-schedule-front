@@ -21,6 +21,8 @@ const RecordsTable = () => {
     const getLectors = async () => {
         const data = await fetch("/lectors/all");
         const dataJson = await data.json();
+        console.log("all lect")
+        console.log(dataJson)
         setLectors(dataJson);
     }
 
@@ -28,10 +30,14 @@ const RecordsTable = () => {
         const data = await fetch("/disciplines");
         const dataJson = await data.json();
         setDisciplines(dataJson);
+
     }
 
 
     const fetchData = async () => {
+   await getLectors();
+    await getDisciplines();
+
         console.log("here")
         let dataJson;
         if(filterByLector !== ''){
@@ -46,9 +52,11 @@ const RecordsTable = () => {
             // setFilterByGroup('');
         }else if(filterByDiscipline !== ''){
             console.log("by discipline");
-            console.log(filterByDiscipline)
+            console.log(filterByDiscipline);
             const data = await fetch("/records/discipline/"+filterByDiscipline);
             dataJson = await data.json();
+            console.log("datajson")
+            console.log(dataJson)
             // setFilterByDiscipline('');
         }else{
             const data = await fetch("/records/all/full");
@@ -56,9 +64,9 @@ const RecordsTable = () => {
         }
 
 
-        await getLectors();
-        await getDisciplines();
+
         setRecords(dataJson);
+        setFilterByLector('')
     }
 
     useEffect(  () => {
