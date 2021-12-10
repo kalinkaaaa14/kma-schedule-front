@@ -20,6 +20,12 @@ const AddClassroomForm = () => {
     }, [])
 
 
+    const deleteData = id => async () => {
+        const res = await fetch(`/classroom/${id}`, { method: 'DELETE'});
+        res.ok ? alert("Кабінет успішно видалено") : alert("ПОМИЛКА! Перевірте, будь ласка, чи кабінет, який ви видаляєте - не зафіксований у існуючих записах. ")
+        await getClassrooms();
+    };
+
     const submitHandler = async (event) => {
         event.preventDefault();
 
@@ -76,11 +82,17 @@ const AddClassroomForm = () => {
                     <tr>
                         <th>Номер</th>
                         <th>Місткість</th>
+                        <th>Видалити</th>
                     </tr>
                     {(classrooms || []).map(i => (
                         <tr key={i.classroomId}>
                             <td>{i.name}</td>
                             <td>{i.capacity}</td>
+                            <td>
+                                <div className={classes.actions}>
+                                    <button onClick={deleteData(i.classroomId)}>Видалити</button>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </table>

@@ -13,13 +13,18 @@ const AddClassTimeForm = () => {
     const getClassTimes = async () => {
         const data = await fetch("/classtime/all");
         const dataJson = await data.json();
-        setClassTime(dataJson);
+        setClassTimes(dataJson);
     }
 
     useEffect(() => {
         getClassTimes();
     }, [])
 
+    const deleteData = id => async () => {
+        const res = await fetch(`/classtime/${id}`, { method: 'DELETE'});
+        res.ok ? alert("Час успішно видалено") : alert("ПОМИЛКА! Перевірте, будь ласка, чи час, який ви видаляєте - не зафіксований у існуючих записах. ")
+        await getClassTimes();
+    };
 
     const submitHandler = async (event) => {
         event.preventDefault();
@@ -108,12 +113,18 @@ const AddClassTimeForm = () => {
                         <th>День тижня</th>
                         <th>Тиждень</th>
                         <th>Час</th>
+                        <th>Видалити</th>
                     </tr>
-                    {(classTime || []).map(i => (
+                    {(classTimes || []).map(i => (
                         <tr key={i.classTimeId}>
                             <td>{i.weekDay}</td>
                             <td>{i.weekNumber}</td>
                             <td>{i.classTime}</td>
+                            <td>
+                                <div className={classes.actions}>
+                                    <button onClick={deleteData(i.classTimeId)}>Видалити</button>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </table>

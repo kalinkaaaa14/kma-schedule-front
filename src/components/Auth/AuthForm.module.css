@@ -38,7 +38,6 @@
 }
 
 .actions {
-    margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,7 +50,7 @@
     background-color: #9f5ccc;
     border: 1px solid #9f5ccc;
     border-radius: 4px;
-    padding: 0.5rem 2.5rem;
+    padding: 0.5rem 1rem;
 }
 
 .actions button:hover {
@@ -64,7 +63,7 @@
     background-color: transparent;
     color: #9f5ccc;
     border: none;
-    padding: 0.15rem 1.5rem;
+    padding: 0.15rem 1rem;
 }
 
 .actions .toggle:hover {

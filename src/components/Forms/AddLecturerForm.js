@@ -20,6 +20,12 @@ const AddLecturerForm = () => {
         getLectors();
     }, [])
 
+    const deleteData = id => async () => {
+        const res = await fetch(`/lectors/${id}`, { method: 'DELETE'});
+        res.ok ? alert("Викладач успішно видалений") : alert("ПОМИЛКА! Перевірте, будь ласка, чи викладач, якого ви видаляєте - не зафіксований у існуючих записах. ")
+        await getLectors();
+    };
+
     const submitHandler = async (event) => {
         event.preventDefault();
 
@@ -86,12 +92,18 @@ const AddLecturerForm = () => {
                         <th>Ім'я</th>
                         <th>Прізвище</th>
                         <th>По-батькові</th>
+                        <th>Видалити</th>
                     </tr>
                     {(lectors || []).map(i => (
                         <tr key={i.lecturerId}>
                             <td>{i.name}</td>
                             <td>{i.surname}</td>
                             <td>{i.middlename}</td>
+                            <td>
+                                <div className={classes.actions}>
+                                    <button onClick={deleteData(i.lecturerId)}>Видалити</button>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </table>
