@@ -1,4 +1,4 @@
-import {useState, useRef, useContext, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import Paper from "@material-ui/core/Paper";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
