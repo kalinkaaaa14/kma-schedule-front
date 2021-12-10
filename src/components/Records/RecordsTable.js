@@ -105,7 +105,8 @@ const RecordsTable = () => {
                 </Paper>
             </div>
         </div>
-        <table>
+    <section>
+        <table className={classes.disciplineTable}>
             <thead>
             <tr>
                 <th>#</th>
@@ -129,7 +130,9 @@ const RecordsTable = () => {
             ))}
             </tbody>
         </table>
+    </section>
     </>
+
     )
 };
 
