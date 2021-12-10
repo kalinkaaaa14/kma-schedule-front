@@ -21,16 +21,12 @@ const AddDisciplineForm = () => {
         setDisciplines(dataJson);
     }
 
-    const deleteDiscipline = async (id) => {
-        const response = await fetch("/disciplines/"+id, {
-            method: 'DELETE',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        response.ok ?  alert("Дисципліна успішно видалена.") :  alert("Дисципліну не було видалено. Status: "+ response.status);
-    }
+    const deleteData = id => async () => {
+        const res = await fetch(`/disciplines/${id}`, { method: 'DELETE'});
+        res.ok ? alert("Дисципліну успішно видалено") : alert("ПОМИЛКА! Перевірте, будь ласка, чи дисципліна, яку ви видаляєте - не зафіксована у існуючих записах. ")
+        await getLectors();
+        await getDisciplines();
+    };
 
     useEffect(  () => {
         getLectors();
@@ -90,7 +86,7 @@ const AddDisciplineForm = () => {
 
                     <div className={classes.actions}>
                         {!isLoading && (
-                            <button>Створити групу</button>
+                            <button>Створити дисципліну</button>
                         )}
                         {isLoading && <p>Відправляємо дані...</p>}
 
@@ -102,11 +98,17 @@ const AddDisciplineForm = () => {
                     <tr>
                         <th>Предмет</th>
                         <th>Лектор</th>
+                        <th>Видалити</th>
                     </tr>
                     {(disciplines || []).map(i => (
                         <tr key={i.disciplineId}>
                             <td>{i.name}</td>
                             <td>{lectors.filter(l => l.lecturerId === i.lecturerId).map(l => (l.surname + ' ' + l.name + ' '+ l.middlename))}</td>
+                            <td>
+                                <div className={classes.actions}>
+                                    <button onClick={deleteData(i.disciplineId)}>Видалити</button>
+                                </div>
+                            </td>
                         </tr>
                     ))}
                 </table>

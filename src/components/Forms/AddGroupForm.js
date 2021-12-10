@@ -150,7 +150,7 @@ const AddGroupForm = () => {
                     {(groups || []).map(i => (
                         <tr key={i.id}>
                             <td>{i.groupNumber}</td>
-                            <td>{i.degree}</td>
+                            <td>{i.degree === ('bachelor' || 'бакалавр') ? 'бакалавр' : 'магістр'}</td>
                             <td>{i.specialization}</td>
                             <td>{i.course}</td>
                             <td>{lectors.filter(l => l.lecturerId === i.lecturerId).map(l => (l.surname + ' ' + l.name + ' '+ l.middlename))}</td>
