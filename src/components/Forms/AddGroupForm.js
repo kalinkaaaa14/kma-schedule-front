@@ -30,6 +30,14 @@ const AddGroupForm = () => {
         getGroups();
     }, [])
 
+
+    const deleteData = id => async () => {
+        const res = await fetch(`/group/${id}`, { method: 'DELETE'});
+        res.ok ? alert("Групу успішно видалено") : alert("ПОМИЛКА! Перевірте, будь ласка, чи група, яку ви видаляєте - не зафіксована у існуючих записах. ")
+        await getLectors();
+        await getGroups();
+    };
+
     const submitHandler = async (event) => {
         event.preventDefault();
 
@@ -126,6 +134,7 @@ const AddGroupForm = () => {
         </section>
             <section className={classesAuth.tableWrapper}>
                 <table className={classesAuth.disciplineTable}>
+                    <thead>
                     <tr>
                         <th>#</th>
                         <th>Ступінь</th>
@@ -133,7 +142,10 @@ const AddGroupForm = () => {
                         <th>Курс</th>
                         <th>Лектор</th>
                         <th>Лекція?</th>
+                        <th>Видалити</th>
                     </tr>
+                    </thead>
+                    <tbody>
                     {(groups || []).map(i => (
                         <tr key={i.id}>
                             <td>{i.groupNumber}</td>
@@ -142,8 +154,14 @@ const AddGroupForm = () => {
                             <td>{i.course}</td>
                             <td>{lectors.filter(l => l.lecturerId === i.lecturerId).map(l => (l.surname + ' ' + l.name + ' '+ l.middlename))}</td>
                             <td>{i.isLecture ? 'Так' : 'Ні'}</td>
+                            <td>
+                                    <div className={classes.actions}>
+                                        <button onClick={deleteData(i.id)}>Видалити</button>
+                                    </div>
+                            </td>
                         </tr>
                     ))}
+                    </tbody>
                 </table>
             </section>
         </div>

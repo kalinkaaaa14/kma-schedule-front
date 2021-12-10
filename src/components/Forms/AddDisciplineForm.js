@@ -17,6 +17,7 @@ const AddDisciplineForm = () => {
     const getDisciplines = async () => {
         const data = await fetch("/disciplines");
         const dataJson = await data.json();
+        console.log(dataJson)
         setDisciplines(dataJson);
     }
 
@@ -55,7 +56,12 @@ const AddDisciplineForm = () => {
         });
 
         response.ok ?  alert("Дисципліна успішно додано.") :  alert("Дисципліну не було додано. Status: "+ response.status);
-        getDisciplines();
+        const data = await fetch("/disciplines");
+        const dataJson = await data.json();
+        console.log(dataJson)
+        setDisciplines(dataJson);
+
+        // const res = await getDisciplines();
         setName('');
         setLecturerId(1);
         setIsLoading(false);

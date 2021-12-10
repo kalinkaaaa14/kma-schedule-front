@@ -3,6 +3,7 @@ import Paper from "@material-ui/core/Paper";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
 import React from "react";
+import classes from "../Auth/AuthForm.module.css";
 
 const RecordsTable = () => {
     const [records, setRecords] = useState([]);
@@ -120,7 +121,8 @@ const RecordsTable = () => {
                 </Paper>
             </div>
         </div>
-        <table>
+    <section>
+        <table className={classes.disciplineTable}>
             <thead>
             <tr>
                 <th>#</th>
@@ -144,7 +146,9 @@ const RecordsTable = () => {
             ))}
             </tbody>
         </table>
+    </section>
     </>
+
     )
 };
 
