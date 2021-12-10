@@ -90,7 +90,7 @@ const AddRecordForm = () => {
                     <select name="groupId" id="groupId"
                             onChange={e => setGroupSelected(e.target.value)}>
                         {(groups || []).map(i => (
-                            <option value={i.groupId} key={i.groupId}>
+                            <option value={i.id} key={i.id}>
                                 {'#' + i.groupNumber + ', ' + i.specialization + '-' + i.course +', '+ (i.isLecture ? 'лекція' : 'практика')}
                             </option>
                         ))}
